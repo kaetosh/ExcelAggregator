@@ -19,6 +19,7 @@ from aggregation import (select_folder,
                          get_excel_files,
                          aggregating_data_from_excel_files,
                          NoExcelFilesError)
+
 from data_text import (NAME_APP,
                        NAME_OUTPUT_FILE,
                        SUB_TITLE_APP,
@@ -105,7 +106,7 @@ class ExcelAggregatorApp(App):
                                                               sheet_name=self.sheet_name))
 
     def action_open_dir(self) -> None:
-        self.file_path: Path = select_folder()
+        self.file_path: Path = select_folder(self.file_path)
         self.query_one('.steps_l').update(TEXT_GENERAL.format(NAME_APP=NAME_APP,
                                                               NAME_OUTPUT_FILE=NAME_OUTPUT_FILE,
                                                               file_path=self.file_path,
@@ -159,8 +160,8 @@ class ExcelAggregatorApp(App):
                                                                              error_app_xls = e,
                                                                              file_path=self.file_path,
                                                                              sheet_name=self.sheet_name))
-        # except Exception as e:
-        #     self.query_one('.steps_l').update(TEXT_UNKNOW_ERR.format(text_err=e))
+        except Exception as e:
+            self.query_one('.steps_l').update(TEXT_UNKNOW_ERR.format(text_err=e))
 
         finally:
             self.query_one(LoadingIndicator).visible = False

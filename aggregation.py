@@ -19,7 +19,6 @@ def aggregating_data_from_excel_files(pr_bar: ProgressBar, excel_files: List[Pat
     dict_df = {}
     missing_files = []
     for index, file_excel in enumerate(excel_files):
-
         try:
             # Читаем файл без заголовков
             df = pd.read_excel(file_excel, sheet_name, header=None)
@@ -34,12 +33,11 @@ def aggregating_data_from_excel_files(pr_bar: ProgressBar, excel_files: List[Pat
 
             # Сохраняем DataFrame в словаре
             dict_df[file_excel] = df
-
         except ValueError:
             missing_files.append(file_excel.name)
-            continue
         percentage = ((index+1) / len(excel_files)) * 100
         pr_bar.update(progress=percentage)
+    pr_bar.update(progress=100)
     try:
         if dict_df:
             result = pd.concat(list(dict_df.values()), ignore_index=True)
@@ -59,10 +57,6 @@ class NoExcelFilesError(Exception):
     """Custom exception for no Excel files found."""
     pass
 
-class InvalidExcelSheetName(Exception):
-    """Custom exception for no Invalid excel sheet name."""
-    pass
-
 def get_excel_files(folder_path: Path) -> List[Path]:
     # Определяем расширения файлов Excel
     excel_extensions = ('.xls', '.xlsx', '.xlsm', '.xlsb', '.odf')
@@ -75,7 +69,7 @@ def get_excel_files(folder_path: Path) -> List[Path]:
         raise NoExcelFilesError("В указанной папке нет файлов Excel.")
     return files
 
-def select_folder() -> Path:
+def select_folder(current_path) -> Path:
     # Создаем скрытое окно
     root = tk.Tk()
     root.withdraw()  # Скрываем главное окно
@@ -83,4 +77,4 @@ def select_folder() -> Path:
     # Открываем диалог выбора папки
     folder_path = filedialog.askdirectory(title="Выберите папку")
 
-    return Path(folder_path) if folder_path else None
+    return Path(folder_path) if folder_path else current_path
