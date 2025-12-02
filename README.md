@@ -14,7 +14,7 @@
 
 ## Установка
 
-1. Скопируйте репозиторий ```[https://github.com/kaetosh/ExcelAggregator-v2.git](https://github.com/kaetosh/ExcelAggregator.git)```
+1. Скопируйте репозиторий ```https://github.com/kaetosh/ExcelAggregator-v2.git```
 2. Установите необходимые бибилиотеки ```pip install -r requirements.txt```
 3. Сформируйте exe-файл для удобного использования приложения ```pyinstaller --onefile main.py```.
 4. Запустите exe-файл main.exe из папки dist
