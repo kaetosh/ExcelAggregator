@@ -1,0 +1,74 @@
+ToastRack {
+        position: relative;
+        offset: 0 -6;
+    }
+
+.introduction {
+    height: auto;
+    border: solid #0087d7;
+}
+
+#buttons {
+    align: center middle;
+    layout: grid;
+    grid-size: 3 1;
+    height: 5;
+}
+
+Button {
+    border: tall $background;
+    width: 100%;
+}
+
+LoadingIndicator {
+    height: auto;
+}
+
+
+ReportScreen {
+    align: center middle;
+    border: solid $accent;
+    background: $surface;
+    }
+
+SheetsScreen {
+    align: center middle;
+    }
+    #container-sheetsscreen-modal{
+        width: 45; 
+        height: 20;
+        border: solid $accent;
+        background: $surface;
+        }
+    SelectionList{
+        height: 5fr;
+        }
+    #horizontals-button-settings-modal{
+        height: 1fr;
+
+    }
+SettingsScreen {
+        align: center middle;
+    }
+        #container-settings-modal {
+           width: 45; 
+           height: 15;
+           border: solid $accent;
+           background: $surface;
+           padding: 1;
+        }
+       .statics-settings-modal {
+          content-align: left middle;
+          height: 3;
+          width: 80%; 
+       }
+       .switchs-settings-modal {
+           content-align: right middle;
+           width: 20%;
+       }
+       #horizontals-button-settings-modal{
+           align: center bottom;
+           }
+       #button-settings-modal {
+            width: 45%;
+                    }
