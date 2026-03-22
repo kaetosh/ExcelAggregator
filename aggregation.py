@@ -187,7 +187,7 @@ def aggregating_data_from_excel_files(excel_files: List[Path],
             on_status(TEXT_LOAD_FILE_XLS)
             
             # Конвертируем DataFrame в список списков
-            result = result.replace(np.nan, None)
+            result = result.replace([np.nan, '#ЧИСЛО', 'nan'], None)
             data = [result.columns.tolist()] + result.values.tolist()
             wb = Workbook()
             wb.new_sheet('sheet1', data=data)
